@@ -1,1 +1,740 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>O‘qituvchilar kuni 💐</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 550px;
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5b21b6;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .step {
+            display: none;
+            animation: slide 0.35s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes slide {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .progress {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 21px;
+            color: #333;
+            margin-bottom: 18px;
+        }
+
+        .option {
+            display: block;
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 13px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #eee5ff;
+        }
+
+        .option.selected {
+            background: #ede9fe;
+            border-color: #7c3aed;
+            color: #5b21b6;
+            font-weight: bold;
+        }
+
+        .option input {
+            display: none;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 14px;
+            font-size: 17px;
+            outline: none;
+        }
+
+        .text-input:focus {
+            border-color: #7c3aed;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 25px 0;
+        }
+
+        .stars input {
+            display: none;
+        }
+
+        .stars label {
+            font-size: 45px;
+            color: #ccc;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .stars label.selected {
+            color: #ffc107;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 130px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 14px;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #7c3aed;
+        }
+
+        .send-btn {
+            width: 100%;
+            border: none;
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            color: white;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .success {
+            display: none;
+            text-align: center;
+            padding: 30px 10px;
+        }
+
+        .success .emoji {
+            font-size: 60px;
+        }
+
+        .success h2 {
+            color: #16a34a;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div id="survey">
+
+        <h1>🌷 O‘qituvchilar kuni 💐</h1>
+
+        <p class="subtitle">
+            Siz uchun kichikgina so‘rovnoma 😊
+        </p>
+
+
+        <!-- 1 -->
+        <div class="step active" id="step1">
+
+            <div class="progress">1 / 12</div>
+
+            <h2>✍️ Ismingiz?</h2>
+
+            <input
+                type="text"
+                id="name"
+                class="text-input"
+                placeholder="Ismingizni yozing..."
+            >
+
+            <button class="send-btn" onclick="nextText(1)">
+                Davom etish ➡️
+            </button>
+
+        </div>
+
+
+        <!-- 2 -->
+        <div class="step" id="step2">
+
+            <div class="progress">2 / 12</div>
+
+            <h2>👨‍🏫 Qaysi fan o‘qituvchisisiz?</h2>
+
+            <label class="option">
+                <input type="radio" name="subject" value="Matematika">
+                Matematika
+            </label>
+
+            <label class="option">
+                <input type="radio" name="subject" value="Informatika">
+                Informatika
+            </label>
+
+            <label class="option">
+                <input type="radio" name="subject" value="Ingliz tili">
+                Ingliz tili
+            </label>
+
+            <label class="option">
+                <input type="radio" name="subject" value="Rus tili">
+                Rus tili
+            </label>
+
+            <label class="option">
+                <input type="radio" name="subject" value="Ona tili">
+                Ona tili
+            </label>
+
+            <label class="option">
+                <input type="radio" name="subject" value="Tarix">
+                Tarix
+            </label>
+
+        </div>
+
+
+        <!-- 3 -->
+        <div class="step" id="step3">
+
+            <div class="progress">3 / 12</div>
+
+            <h2>👨‍🎓 Men qanday o‘quvchiman?</h2>
+
+            <label class="option">
+                <input type="radio" name="student" value="A'lochi">
+                🏆 A'lochi
+            </label>
+
+            <label class="option">
+                <input type="radio" name="student" value="Yaxshi">
+                👍 Yaxshi o‘quvchi
+            </label>
+
+            <label class="option">
+                <input type="radio" name="student" value="Faol">
+                🔥 Faol
+            </label>
+
+            <label class="option">
+                <input type="radio" name="student" value="Sho'x">
+                😂 Sho‘x
+            </label>
+
+            <label class="option">
+                <input type="radio" name="student" value="Tinch">
+                😌 Tinch
+            </label>
+
+        </div>
+
+
+        <!-- 4 -->
+        <div class="step" id="step4">
+
+            <div class="progress">4 / 12</div>
+
+            <h2>😊 Muomalam qanday?</h2>
+
+            <label class="option">
+                <input type="radio" name="attitude" value="Juda yaxshi">
+                ❤️ Juda yaxshi
+            </label>
+
+            <label class="option">
+                <input type="radio" name="attitude" value="Yaxshi">
+                😊 Yaxshi
+            </label>
+
+            <label class="option">
+                <input type="radio" name="attitude" value="Oddiy">
+                🙂 Oddiy
+            </label>
+
+            <label class="option">
+                <input type="radio" name="attitude" value="Sho'x">
+                😄 Ba'zida sho‘x
+            </label>
+
+        </div>
+
+
+        <!-- 5 -->
+        <div class="step" id="step5">
+
+            <div class="progress">5 / 12</div>
+
+            <h2>📖 Vazifalarni qanday bajaraman?</h2>
+
+            <label class="option">
+                <input type="radio" name="homework" value="Juda yaxshi">
+                🔥 Juda yaxshi
+            </label>
+
+            <label class="option">
+                <input type="radio" name="homework" value="Yaxshi">
+                👍 Yaxshi
+            </label>
+
+            <label class="option">
+                <input type="radio" name="homework" value="O'rtacha">
+                🙂 O‘rtacha
+            </label>
+
+            <label class="option">
+                <input type="radio" name="homework" value="Ba'zida bajarmayman">
+                😅 Ba'zida bajarmayman
+            </label>
+
+        </div>
+
+
+        <!-- 6 -->
+        <div class="step" id="step6">
+
+            <div class="progress">6 / 12</div>
+
+            <h2>🧠 Savollarga qanday javob beraman?</h2>
+
+            <label class="option">
+                <input type="radio" name="answer" value="Juda faol">
+                🔥 Juda faol
+            </label>
+
+            <label class="option">
+                <input type="radio" name="answer" value="Yaxshi">
+                👍 Yaxshi
+            </label>
+
+            <label class="option">
+                <input type="radio" name="answer" value="O'rtacha">
+                🙂 O‘rtacha
+            </label>
+
+            <label class="option">
+                <input type="radio" name="answer" value="Uyatchan">
+                😅 Javob berishga uyalaman
+            </label>
+
+        </div>
+
+
+        <!-- 7 -->
+        <div class="step" id="step7">
+
+            <div class="progress">7 / 12</div>
+
+            <h2>🗣️ Ko‘p gapiramanmi?</h2>
+
+            <label class="option">
+                <input type="radio" name="talk" value="Ha, juda ko'p">
+                😂 Ha, juda ko‘p
+            </label>
+
+            <label class="option">
+                <input type="radio" name="talk" value="Ba'zida">
+                😄 Ba'zida
+            </label>
+
+            <label class="option">
+                <input type="radio" name="talk" value="Kam">
+                🙂
+                Kam gapiraman
+            </label>
+
+            <label class="option">
+                <input type="radio" name="talk" value="Umuman yo'q">
+                🤐 Umuman gapirmayman
+            </label>
+
+        </div>
+
+
+        <!-- 8 -->
+        <div class="step" id="step8">
+
+            <div class="progress">8 / 12</div>
+
+            <h2>⏰ Darsga vaqtida kelamanmi?</h2>
+
+            <label class="option">
+                <input type="radio" name="time" value="Har doim">
+                ⏰ Har doim
+            </label>
+
+            <label class="option">
+                <input type="radio" name="time" value="Ko'pincha">
+                😊 Ko‘pincha
+            </label>
+
+            <label class="option">
+                <input type="radio" name="time" value="Ba'zida">
+                😅 Ba'zida
+            </label>
+
+            <label class="option">
+                <input type="radio" name="time" value="Kamdan kam">
+                😂 Kamdan-kam
+            </label>
+
+        </div>
+
+
+        <!-- 9 -->
+        <div class="step" id="step9">
+
+            <div class="progress">9 / 12</div>
+
+            <h2>😂 Sizni kuldiramanmi?</h2>
+
+            <label class="option">
+                <input type="radio" name="funny" value="Ha, ko'p">
+                😂 Ha, ko‘p
+            </label>
+
+            <label class="option">
+                <input type="radio" name="funny" value="Ba'zida">
+                😄 Ba'zida
+            </label>
+
+            <label class="option">
+                <input type="radio" name="funny" value="Kamdan kam">
+                🙂
+                Kamdan-kam
+            </label>
+
+            <label class="option">
+                <input type="radio" name="funny" value="Yo'q">
+                😐 Yo‘q
+            </label>
+
+        </div>
+
+
+        <!-- 10 -->
+        <div class="step" id="step10">
+
+            <div class="progress">10 / 12</div>
+
+            <h2>❤️ Mening qaysi tomonim yoqadi?</h2>
+
+            <label class="option">
+                <input type="radio" name="like" value="Aqlliligim">
+                🧠 Aqlliligim
+            </label>
+
+            <label class="option">
+                <input type="radio" name="like" value="Faolligim">
+                🔥 Faolligim
+            </label>
+
+            <label class="option">
+                <input type="radio" name="like" value="Hazilkashligim">
+                😂 Hazilkashligim
+            </label>
+
+            <label class="option">
+                <input type="radio" name="like" value="Odobim">
+                ❤️ Odobim
+            </label>
+
+            <label class="option">
+                <input type="radio" name="like" value="Mehnatkashligim">
+                💪 Mehnatkashligim
+            </label>
+
+        </div>
+
+
+        <!-- 11 -->
+        <div class="step" id="step11">
+
+            <div class="progress">11 / 12</div>
+
+            <h2>💭 Men haqimda fikringiz?</h2>
+
+            <textarea
+                id="opinion"
+                placeholder="Fikringizni yozing..."
+            ></textarea>
+
+            <button class="send-btn" onclick="nextText(11)">
+                Davom etish ➡️
+            </button>
+
+        </div>
+
+
+        <!-- 12 -->
+        <div class="step" id="step12">
+
+            <div class="progress">12 / 12</div>
+
+            <h2>⭐ Menga necha baho berasiz?</h2>
+
+            <div class="stars">
+
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1">★</label>
+
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2">★</label>
+
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3">★</label>
+
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4">★</label>
+
+                <input type="radio" id="star5" name="rating" value="5">
+                <label for="star5">★</label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- YAKUNIY OYNA -->
+
+    <div id="success" class="success">
+
+        <div class="emoji">🎉</div>
+
+        <h2>Rahmat! ❤️</h2>
+
+        <p>
+            Javobingiz qabul qilindi!
+            <br><br>
+            O‘qituvchilar kuni muborak bo‘lsin! 💐
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    // Keyingi savolga o'tish
+    function goNext(current) {
+
+        const currentStep =
+            document.getElementById("step" + current);
+
+        const nextStep =
+            document.getElementById("step" + (current + 1));
+
+        if (!nextStep) {
+            showSuccess();
+            return;
+        }
+
+        currentStep.classList.remove("active");
+
+        nextStep.classList.add("active");
+    }
+
+
+    // 1-savol
+    function nextText(step) {
+
+        if (step === 1) {
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            if (name === "") {
+                alert("Iltimos, ismingizni yozing! ✍️");
+                return;
+            }
+        }
+
+
+        if (step === 11) {
+
+            const opinion =
+                document.getElementById("opinion").value.trim();
+
+            if (opinion === "") {
+                alert("Iltimos, fikringizni yozing! 💭");
+                return;
+            }
+        }
+
+        goNext(step);
+    }
+
+
+    // Radio javob tanlanganda avtomatik o'tish
+    document.querySelectorAll(
+        'input[type="radio"]'
+    ).forEach(input => {
+
+        input.addEventListener("change", function() {
+
+            const currentStep =
+                this.closest(".step");
+
+            const currentNumber =
+                Number(currentStep.id.replace("step", ""));
+
+            // Yulduz tanlanganda ham avtomatik o'tadi
+            setTimeout(function() {
+
+                if (currentNumber === 12) {
+                    showSuccess();
+                } else {
+                    goNext(currentNumber);
+                }
+
+            }, 350);
+
+        });
+
+    });
+
+
+    // Variant tanlanganini ko'rsatish
+    document.querySelectorAll(".option")
+    .forEach(option => {
+
+        option.addEventListener("click", function() {
+
+            const parent = this.parentElement;
+
+            parent.querySelectorAll(".option")
+            .forEach(item => {
+
+                item.classList.remove("selected");
+
+            });
+
+            this.classList.add("selected");
+
+        });
+
+    });
+
+
+    // Yulduzlarni sariq qilish
+    document.querySelectorAll(
+        ".stars input"
+    ).forEach(input => {
+
+        input.addEventListener("change", function() {
+
+            const rating =
+                Number(this.value);
+
+            const labels =
+                document.querySelectorAll(
+                    ".stars label"
+                );
+
+            labels.forEach((label, index) => {
+
+                if (index < rating) {
+                    label.classList.add("selected");
+                } else {
+                    label.classList.remove("selected");
+                }
+
+            });
+
+        });
+
+    });
+
+
+    // Yakuniy oyna
+    function showSuccess() {
+
+        document.getElementById("survey")
+            .style.display = "none";
+
+        document.getElementById("success")
+            .style.display = "block";
+
+    }
+
+</script>
+
+</body>
+</html>
